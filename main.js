@@ -23,16 +23,31 @@ let wantSun= false;
 let faMoon = document.querySelector('.fa-moon');
 let faSun = document.querySelector('.fa-sun');
 
+window.addEventListener('load', () => {
+    let savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        wantDark = true;
+        wantSun = false;
+        darkMood(); 
+    } else if (savedTheme === 'sun') {
+        wantSun = true;
+        wantDark = false;
+        sunMood(); 
+    }
+});
+
 faMoon.addEventListener('click' ,function(){
-	wantDark=true;
-	wantSun = false;
-	darkMood()
+    wantDark = true;
+    wantSun = false;
+    localStorage.setItem('theme', 'dark'); 
+    darkMood();
 })
 
 faSun.addEventListener('click' ,function(){
-	wantSun=true;
-	wantDark=false;
-	sunMood();
+    wantSun = true;
+    wantDark = false;
+    localStorage.setItem('theme', 'sun'); 
+    sunMood();
 })
 
 function darkMood(){
